@@ -1,0 +1,42 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+
+<head> 
+  <title> Test </title> 
+      <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> 
+      <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+     
+</head>
+<body id="bb">
+  <div id="aaa"> 
+  <h4 id="aa"> toDo App </h4> 
+  <form action= "{% url 'add' %}" method="POST">
+  {% csrf_token %}
+  
+  {{form.text}}
+  
+  <button id="btn" > Submit </button>
+ 
+  </form>
+  
+  <ul id="ddd">
+    {% for todo in task %}
+       {% if todo.complete %}
+       <a class="type" href="{% url 'complete' todo.id %}"><li class= "group aaa"> {{todo.text}} <a href="{% url 'deleteTag' todo.id %}"><span class="glyphicon glyphicon-trash"></span></a></li></a>
+       {% else %}
+       <a class="type" href="{% url 'complete' todo.id %}"><li class= "group"> {{todo.text}} <a href="{% url 'deleteTag' todo.id %}"><span class="glyphicon glyphicon-trash"></span> </a> </li></a> 
+       {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+<div>
+  <a href="{% url 'showAll' %}"><button class="bbbb" onclick="showAll()" >Show All  </button></a>
+  <a href="{% url 'showActive' %}"><button class="bbbb" onclick="showActive()" > Show Active </button></a>
+  <a href="{% url 'showComplete' %}"><button class="bbbb" onclick="showCompleted()" > Show Complete</button></a>
+  <a href="{% url 'clearAll' %}"><button class="bbbb" onclick="clearAll()" >Clear All </button> </a>
+</div> 
+
+
+</body>
+</html>
