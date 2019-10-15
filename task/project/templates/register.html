@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head> 
+  <title> Test </title> 
+      <link rel="stylesheet" type="text/css" href= "{% static 'style2.css' %}"> 
+</head>
+
+<body>
+
+    <form action="register" method="post">
+    {% csrf_token %}
+        <label> FirstName:</label> <br> 
+        <input type="text" name="first_name" placeholder="First name"> <br> <br>
+        <label> LastName:</label> <br> 
+        <input type="text" name="last_name" placeholder="last name"> <br> <br>
+        <label> Username:</label> <br> 
+        <input type="text" name="username" placeholder=" username"> <br> <br>
+        <label>Email:</label> <br> 
+        <input type="email" name="email" placeholder="email_id"> <br> <br>
+        <label>password:</label> <br> 
+        <input type="password" name="password1" placeholder="password"> <br> <br>
+        <label>Confrim password:</label> <br> 
+        <input type="password" name="password2" placeholder="confirm password"> <br> <br>
+
+        <button> Submit </button>
+        
+    </form>
+    <div>
+        {% for message in messages %}
+        <h4> {{message}} </h4>
+        {% endfor %}
+    </div>
+</body>
+</html>
